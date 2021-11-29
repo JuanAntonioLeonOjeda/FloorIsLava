@@ -10,12 +10,25 @@ function Platform (width, height, posx, posy, id) {
   this.hor = posx
   this.width = width
   this.height = height
-  
+  this.reduceTimer = null
 
   this.reduce = function() {
-    self.width -= 0.5
-    self.hor += 0.25
-    self.sprite.style.width = self.width + 'px'
-    self.sprite.style.left = self.hor + 'px'
+    this.reduceTimer = setInterval(function(){
+      this.width -= 0.5
+      this.hor += 0.25
+      this.sprite.style.width = this.width + 'px'
+      this.sprite.style.left = this.hor + 'px'
+    }.bind(this), 50)
+  }
+
+  this.reset = function() {
+    this.width = 500 
+    this.hor = 150
+    this.sprite.style.width = this.width + 'px'
+    this.sprite.style.left = this.hor + 'px'
+  }
+
+  this.reduceStop = function() {
+    clearInterval(this.reduceTimer)
   }
 }

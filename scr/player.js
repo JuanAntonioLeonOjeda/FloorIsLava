@@ -231,7 +231,7 @@ function Player(width, height, posx, posy, playernum) {
       enemy.hor = 450
     } else {
       this.hor = 450
-      enemy.hor 
+      enemy.hor = 350 
     }
     enemy.sprite.style.left = enemy.hor + 'px'
     this.sprite.style.left = this.hor + 'px'

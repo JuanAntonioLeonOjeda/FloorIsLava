@@ -37,6 +37,7 @@ function gameOver(winner, music) {
     music.pause()
     window.alert(`player ${winner} wins`)
 }
+
 function startGame() {
     clearScreen()
     var ost = music[selectSong()]
@@ -87,7 +88,6 @@ function startGame() {
         }
     })
 
-
     window.addEventListener('keydown', function (e) {
         switch (e.key.toLowerCase()) {
             case 'd':
@@ -120,9 +120,13 @@ function startGame() {
             player2.direction = 0
     })
 
-    function platformReduce() {
-        setTimeout(plat1.reduce, 10000)
+    let platformTimerin10sec
+    function platformReduceIn10sec() {
+        platformTimerin10sec = setTimeout(function() {
+            plat1.reduce()
+        }, 10000)
     }
+    platformReduceIn10sec()
 
 
     var timerId = setInterval(function () {
@@ -131,38 +135,42 @@ function startGame() {
         if (!player1.jumping) {
             player1.walkSprite()
         }
+
         player2.moveX(player1, plat1)
         player2.moveY(plat1, player1)
         if (!player2.jumping) {
             player2.walkSprite()
         }
+
         player2.moveHit(player1)
         player1.moveHit(player2)
         player1.lookAt(player2)
         player2.lookAt(player1)
+
         lava.grow()
-        platformReduce()
+        
         if (player1.collideLava(600 - lava.height)) {
-            player1.missLife(lives1, livesArray1)
-            plat1.width = 500
-            plat1.hor = 150
-            plat1.sprite.style.width = plat1.width + 'px'
-            plat1.sprite.style.hor = plat1.hor + 'px'
-            platformReduce()
+            plat1.reduceStop()
+            plat1.reset()
+            clearTimeout(platformTimerin10sec)
+            player1.missLife(lives1, livesArray1, player2)
+            platformReduceIn10sec()
         }
+        
         if (player2.collideLava(600 - lava.height)) {
-            player2.missLife(lives2, livesArray2)
-            plat1.width = 500
-            plat1.hor = 150
-            plat1.sprite.style.width = plat1.width + 'px'
-            plat1.sprite.style.hor = plat1.hor + 'px'
-            platformReduce()
+            plat1.reduceStop()
+            plat1.reset()
+            clearTimeout(platformTimerin10sec)
+            player2.missLife(lives2, livesArray2, player1)
+            platformReduceIn10sec()
         }
+
         if (player1.isDead()) {
             clearInterval(timerId)
             clearTimeout(timerPlat)
             gameOver(player2.playernum, ost)
         }
+
         if (player2.isDead()) {
             clearInterval(timerId)
             clearTimeout(timerPlat)
