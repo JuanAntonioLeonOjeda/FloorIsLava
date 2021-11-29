@@ -1,6 +1,13 @@
 var startButton = document.getElementById('game-start')
 startButton.addEventListener('click', startGame)
 
+function loadFont() {
+    var link = document.createElement('link');
+    link.href = 'url(../assets/8-BIT WONDER.TTF)';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+}
+
 const music = {
     0: new Audio ('../assets/music/TakeOnMe.mp3'),
     1: new Audio ('../assets/music/HoldingOutForAHero.mp3'),
@@ -8,9 +15,10 @@ const music = {
 }
 
 const sounds = {
-    punch1: new Audio ('../assets/music/sounds/Punch1.mp3'),
-    punch2: new Audio ('../assets/music/sounds/Punch2.mp3'),
-    miss: new Audio ('../assets/music/sounds/Miss.mp3'),
+    punch1: new Audio ('../assets/music/sounds/punch1.mp3'),
+    miss: new Audio ('../assets/music/sounds/miss.mp3'),
+    jump1: new Audio ('../assets/music/sounds/8bit_jump.mp3'),
+    jump2: new Audio ('../assets/music/sounds/jump.mp3'),
 }
 
 function clearScreen () {
@@ -32,7 +40,7 @@ function gameOver(winner,music) {
 function startGame () {
     clearScreen()
      var ost = music[selectSong()]
-     ost.volume = 0.3
+     ost.volume = 0.05
      ost.play()
     var parent = document.getElementById('main')
     parent.style.background = 'url(../assets/graphics/scifi.gif)'
@@ -67,6 +75,7 @@ function startGame () {
                 break
             case 'ArrowUp':
                 if(!player1.jumping) {
+                    sounds.jump1.play()
                     player1.jumping = true
                 }
                 break
@@ -89,6 +98,7 @@ function startGame () {
                 break
           case 'w':
               if (!player2.jumping) {
+                  sounds.jump2.play()
                   player2.jumping = true
               }
               break

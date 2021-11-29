@@ -13,8 +13,8 @@ function Platform (width, height, posx, posy, id) {
   
 
   this.reduce = function() {
-    self.width -= 1
-    self.hor += 0.5
+    self.width -= 0.5
+    self.hor += 0.25
     self.sprite.style.width = self.width + 'px'
     self.sprite.style.left = self.hor + 'px'
   }

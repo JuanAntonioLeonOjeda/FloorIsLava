@@ -115,7 +115,7 @@ function Player(width, height, posx, posy, playernum) {
       self.sprite.style.width = self.width + 'px'
       self.loadAfterAttack(enemy)
       self.attacking = false
-    }, 500)
+    }, 100)
   }
 
   this.loadAfterAttack = function (enemy) {

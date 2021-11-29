@@ -3,26 +3,30 @@ h1 {
     text-align: center;
 }
 
+@font-face {
+  font-family: '8bit';
+  src: url(../assets/8bit.ttf) format('truetype');
+}
+
 #game-start {
-    width: 100px;
-    margin: 25px 350px;
+    position: absolute;
+    width: 200px;
+    left:300px;
+    top: 500px;
+    background-color: rgb(238, 19, 190);
+    font-family: '8bit';
 }
 
 #main {
-    position:relative;
-    margin:auto;
+    position: relative;
+    margin: auto;
     width: 800px;
     height: 600px;
     border: solid 1px black;
     background: rgb(238, 19, 190);
-    background-size: contain;
+    background-image: url(../assets/graphics/portada-juego.jpg);
+    background-repeat: no-repeat;
   }
-  
-video {
-  width: 800px;
-  height: 600px;
-  object-fit: cover;
-}
 
   #lava {
     position: absolute;
@@ -40,6 +44,7 @@ video {
     scale: 1.5;
     background-size: contain;
     background-repeat: no-repeat;
+    filter: drop-shadow(1px 3px 5px #ffb9f9);
   }
   
   #player2 {
@@ -48,6 +53,7 @@ video {
     background-size: contain;
     scale: 1.5;
     background-repeat: no-repeat;
+    filter: drop-shadow(1px 3px 5px #b6d0ff);
   }
 
   .life1 {
