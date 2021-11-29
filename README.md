@@ -1,3 +1,3 @@
 # FloorIsLava
 
-This project has conflict
+This project is AWESOME!
