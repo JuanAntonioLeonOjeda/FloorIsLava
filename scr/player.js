@@ -44,17 +44,17 @@ function Player(width, height, posx, posy, playernum) {
       if (!this.collideBottom(platform)) {
         this.vert += this.directionY * 20
         this.sprite.style.top = this.vert + 'px'
-      } 
+      }
       else {
         if (!this.attacking) {
-          this.loadNormalSprite (enemy)
-        this.speedY = 60
-        this.jumping = false
-        this.vert = platform.vert - this.height
-        this.sprite.style.top = this.vert + 'px'
-        this.width = 30
-        this.sprite.style.width = this.width + 'px'
-        } 
+          this.loadNormalSprite(enemy)
+          this.speedY = 60
+          this.jumping = false
+          this.vert = platform.vert - this.height
+          this.sprite.style.top = this.vert + 'px'
+          this.width = 30
+          this.sprite.style.width = this.width + 'px'
+        }
       }
     }
   }
@@ -119,12 +119,12 @@ function Player(width, height, posx, posy, playernum) {
   }
 
   this.loadAfterAttack = function (enemy) {
-    if (this.lookAt (enemy) === 1) {
+    if (this.lookAt(enemy) === 1) {
       if (this.playernum === 1) {
         this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKRIGHT1.png) no-repeat'
       } else {
         this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKRIGHT1.png) no-repeat'
-      }   
+      }
     } else {
       if (this.playernum === 1) {
         this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKLEFT1.png) ssno-repeat'
@@ -134,25 +134,25 @@ function Player(width, height, posx, posy, playernum) {
         this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKLEFT1.png) no-repeat'
         this.hor += 15
         this.sprite.style.left = this.hor + 'px'
-      }   
+      }
     }
   }
 
   this.lookAt = function (enemy) {
-   if( this.hor <= enemy.hor) {
-     return 1 //right
-   } else {
-     return -1 //left
-   }
+    if (this.hor <= enemy.hor) {
+      return 1 //right
+    } else {
+      return -1 //left
+    }
   }
-  
+
   this.loadNormalSprite = function (enemy) {
-    if (this.lookAt (enemy) === 1) {
+    if (this.lookAt(enemy) === 1) {
       if (this.playernum === 1) {
         this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKRIGHT1.png) no-repeat'
       } else {
         this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKRIGHT1.png) no-repeat'
-      }   
+      }
     } else {
       if (this.playernum === 1) {
         this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKLEFT1.png) no-repeat'
@@ -188,13 +188,13 @@ function Player(width, height, posx, posy, playernum) {
         this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKRIGHT1.png) no-repeat'
       } else {
         this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKRIGHT1.png) no-repeat'
-      } 
+      }
     } else if (this.direction === -1) {
       if (this.playernum === 1) {
-         this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKLEFT1.png) no-repeat'
-        } else {
-          this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKLEFT1.png) no-repeat'
-        }
+        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKLEFT1.png) no-repeat'
+      } else {
+        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKLEFT1.png) no-repeat'
+      }
     }
   }
 
@@ -215,18 +215,25 @@ function Player(width, height, posx, posy, playernum) {
   }
 
   this.moveHit = function (enemy) {
-      if (this.punched && this.speedHit >= 0.15) {
-        this.hor -= this.speedHit*this.lookAt(enemy)
-        this.speedHit -= this.speedHit * 0.6
-        this.sprite.style.left = this.hor + 'px'
-      } else {
-        this.punched = false
-        this.speedHit = 40
-      }
+    if (this.punched && this.speedHit >= 0.15) {
+      this.hor -= this.speedHit * this.lookAt(enemy)
+      this.speedHit -= this.speedHit * 0.6
+      this.sprite.style.left = this.hor + 'px'
+    } else {
+      this.punched = false
+      this.speedHit = 40
+    }
   }
 
-  this.missLife = function(lives, arr) {
-    this.hor = 400 
+  this.missLife = function (lives, arr, enemy) {
+    if (this.playernum === 1) {
+      this.hor = 350
+      enemy.hor = 450
+    } else {
+      this.hor = 450
+
+    }
+    enemy.sprite.style.left = enemy.hor + 'px'
     this.sprite.style.left = this.hor + 'px'
     this.sprite.style.top = 170 + 'px'
     this.vert = 170
@@ -235,7 +242,7 @@ function Player(width, height, posx, posy, playernum) {
   }
 
   this.isDead = function () {
-    if ( this.lives === 0) {
+    if (this.lives === 0) {
       return true
     }
   }

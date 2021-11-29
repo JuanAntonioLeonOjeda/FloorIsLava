@@ -9,19 +9,19 @@ function loadFont() {
 }
 
 const music = {
-    0: new Audio ('../assets/music/TakeOnMe.mp3'),
-    1: new Audio ('../assets/music/HoldingOutForAHero.mp3'),
-    2: new Audio ('../assets/music/WelcomeToTheJungle.mp3'),
+    0: new Audio('../assets/music/TakeOnMe.mp3'),
+    1: new Audio('../assets/music/HoldingOutForAHero.mp3'),
+    2: new Audio('../assets/music/WelcomeToTheJungle.mp3'),
 }
 
 const sounds = {
-    punch1: new Audio ('../assets/music/sounds/punch1.mp3'),
-    miss: new Audio ('../assets/music/sounds/miss.mp3'),
-    jump1: new Audio ('../assets/music/sounds/8bit_jump.mp3'),
-    jump2: new Audio ('../assets/music/sounds/jump.mp3'),
+    punch1: new Audio('../assets/music/sounds/punch1.mp3'),
+    miss: new Audio('../assets/music/sounds/miss.mp3'),
+    jump1: new Audio('../assets/music/sounds/8bit_jump.mp3'),
+    jump2: new Audio('../assets/music/sounds/jump.mp3'),
 }
 
-function clearScreen () {
+function clearScreen() {
     var board = document.getElementById('main')
     var childs = document.querySelectorAll('#main > *')
     for (let i = 0; i < childs.length; i++) {
@@ -29,33 +29,33 @@ function clearScreen () {
     }
 }
 
-function selectSong () {
-    return Math.floor(Math.random()*3)
+function selectSong() {
+    return Math.floor(Math.random() * 3)
 }
 
-function gameOver(winner,music) {
+function gameOver(winner, music) {
     music.pause()
     window.alert(`player ${winner} wins`)
 }
-function startGame () {
+function startGame() {
     clearScreen()
-     var ost = music[selectSong()]
-     ost.volume = 0.05
-     ost.play()
+    var ost = music[selectSong()]
+    ost.volume = 0.05
+    ost.play()
     var parent = document.getElementById('main')
     parent.style.background = 'url(../assets/graphics/scifi.gif)'
     parent.style.backgroundSize = 'contain'
     parent.style.backgroundRepeat = 'no-repeat'
     var lives1 = document.createElement('div')
     var lives2 = document.createElement('div')
-    lives1.setAttribute('id','life-container1')
-    lives2.setAttribute('id' ,'life-container2')
+    lives1.setAttribute('id', 'life-container1')
+    lives2.setAttribute('id', 'life-container2')
     lives1.innerHTML = '<div class=life1></div><div class=life1></div><div class=life1></div>'
     lives2.innerHTML = '<div class=life2></div><div class=life2></div><div class=life2></div>'
-    var plat1 = new Platform (500,75,150,300)
+    var plat1 = new Platform(500, 75, 150, 300)
     var player1 = new Player(30, 40, 350, 260, 1)
     var player2 = new Player(30, 40, 450, 260, 2)
-    var lava = new Lava (800, 100, 0, 500)
+    var lava = new Lava(800, 100, 0, 500)
     var livesArray1 = document.getElementsByClassName('life1')
     var livesArray2 = document.getElementsByClassName('life2')
     parent.appendChild(lives2)
@@ -65,8 +65,8 @@ function startGame () {
     parent.appendChild(player2.sprite)
     parent.appendChild(lava.sprite)
 
-    window.addEventListener('keydown',function(e) {
-        switch(e.key) {
+    window.addEventListener('keydown', function (e) {
+        switch (e.key) {
             case 'ArrowRight':
                 player1.direction = 1
                 break
@@ -74,55 +74,58 @@ function startGame () {
                 player1.direction = -1
                 break
             case 'ArrowUp':
-                if(!player1.jumping) {
+                if (!player1.jumping) {
                     sounds.jump1.play()
                     player1.jumping = true
                 }
                 break
             case 'Enter':
-                if(!player1.attacking) {
-                    player1.attack (player2)
+                if (!player1.attacking) {
+                    player1.attack(player2)
                 }
                 break
         }
     })
 
 
-    window.addEventListener('keydown', function(e){
-      switch (e.key.toLowerCase()) {
-          case 'd':
+    window.addEventListener('keydown', function (e) {
+        switch (e.key.toLowerCase()) {
+            case 'd':
                 player2.direction = 1
                 break
             case 'a':
                 player2.direction = -1
                 break
-          case 'w':
-              if (!player2.jumping) {
-                  sounds.jump2.play()
-                  player2.jumping = true
-              }
-              break
+            case 'w':
+                if (!player2.jumping) {
+                    sounds.jump2.play()
+                    player2.jumping = true
+                }
+                break
             case 's':
-                if(!player1.attacking) {
+                if (!player1.attacking) {
                     player2.attack(player1)
                 }
                 break
-      }
-    }) 
-  
-  window.addEventListener('keyup', function(e) {
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight')
-        player1.direction = 0
+        }
     })
 
-  window.addEventListener('keyup', function(e) {
-    if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd')
-        player2.direction = 0
+    window.addEventListener('keyup', function (e) {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight')
+            player1.direction = 0
     })
 
-    
-  
-    var timerId = setInterval(function() {  
+    window.addEventListener('keyup', function (e) {
+        if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd')
+            player2.direction = 0
+    })
+
+    function platformReduce() {
+        setTimeout(plat1.reduce, 10000)
+    }
+
+
+    var timerId = setInterval(function () {
         player1.moveX(player2, plat1)
         player1.moveY(plat1, player2)
         if (!player1.jumping) {
@@ -132,30 +135,40 @@ function startGame () {
         player2.moveY(plat1, player1)
         if (!player2.jumping) {
             player2.walkSprite()
-        }  
+        }
         player2.moveHit(player1)
         player1.moveHit(player2)
         player1.lookAt(player2)
         player2.lookAt(player1)
         lava.grow()
-        var timerPlat = setTimeout (plat1.reduce,10000)
+        platformReduce()
         if (player1.collideLava(600 - lava.height)) {
-           player1.missLife(lives1,livesArray1)
+            player1.missLife(lives1, livesArray1)
+            plat1.width = 500
+            plat1.hor = 150
+            plat1.sprite.style.width = plat1.width + 'px'
+            plat1.sprite.style.hor = plat1.hor + 'px'
+            platformReduce()
         }
         if (player2.collideLava(600 - lava.height)) {
-            player2.missLife(lives2,livesArray2)
+            player2.missLife(lives2, livesArray2)
+            plat1.width = 500
+            plat1.hor = 150
+            plat1.sprite.style.width = plat1.width + 'px'
+            plat1.sprite.style.hor = plat1.hor + 'px'
+            platformReduce()
         }
         if (player1.isDead()) {
             clearInterval(timerId)
             clearTimeout(timerPlat)
-            gameOver(player2.playernum, ost) 
+            gameOver(player2.playernum, ost)
         }
         if (player2.isDead()) {
             clearInterval(timerId)
             clearTimeout(timerPlat)
-            gameOver(player1.playernum, ost) 
+            gameOver(player1.playernum, ost)
         }
-    },50)
+    }, 50)
 
-    
+
 }
