@@ -1,12 +1,6 @@
 var startButton = document.getElementById('game-start')
 startButton.addEventListener('click', startGame)
 
-function loadFont() {
-    var link = document.createElement('link');
-    link.href = 'url(../assets/8-BIT WONDER.TTF)';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-}
 
 const music = {
     0: new Audio('../assets/music/TakeOnMe.mp3'),
@@ -33,9 +27,15 @@ function selectSong() {
     return Math.floor(Math.random() * 3)
 }
 
-function gameOver(winner, music) {
+function gameOver(winner, music, parent) {
     music.pause()
-    window.alert(`player ${winner} wins`)
+    clearScreen()
+    //window.alert(`player ${winner} wins`
+    var resetButton = document.createElement('button')
+    resetButton.addEventListener('click', startGame)
+    resetButton.innerText = 'Play Again'
+    parent.style.background = 'none'
+    parent.appendChild(resetButton)
 }
 
 function startGame() {
@@ -43,6 +43,7 @@ function startGame() {
     var ost = music[selectSong()]
     ost.volume = 0.05
     ost.play()
+    var isPlaying = true
     var parent = document.getElementById('main')
     parent.style.background = 'url(../assets/graphics/scifi.gif)'
     parent.style.backgroundSize = 'contain'
@@ -85,6 +86,14 @@ function startGame() {
                     player1.attack(player2)
                 }
                 break
+            case ' ':
+                if (isPlaying) {
+                    ost.pause()
+                    isPlaying = false
+                } else {
+                    ost.play()
+                    isPlaying = true
+                }
         }
     })
 
@@ -167,14 +176,12 @@ function startGame() {
 
         if (player1.isDead()) {
             clearInterval(timerId)
-            clearTimeout(timerPlat)
-            gameOver(player2.playernum, ost)
+            gameOver(player2.playernum, ost, parent)
         }
 
         if (player2.isDead()) {
             clearInterval(timerId)
-            clearTimeout(timerPlat)
-            gameOver(player1.playernum, ost)
+            gameOver(player1.playernum, ost, parent)
         }
     }, 50)
 
