@@ -1,7 +1,3 @@
-var startButton = document.getElementById('game-start')
-startButton.addEventListener('click', startGame)
-
-
 const music = {
     0: new Audio('../assets/music/TakeOnMe.mp3'),
     1: new Audio('../assets/music/HoldingOutForAHero.mp3'),
@@ -13,7 +9,13 @@ const sounds = {
     miss: new Audio('../assets/music/sounds/miss.mp3'),
     jump1: new Audio('../assets/music/sounds/8bit_jump.mp3'),
     jump2: new Audio('../assets/music/sounds/jump.mp3'),
+    over: new Audio('../assets/music/sounds/gameover.wav'),
+    startscreen: new Audio('../assets/music/sounds/inicio.wav'),
+    fall: new Audio('../assets/music/sounds/caida2.wav'),
 }
+
+var startButton = document.getElementById('game-start')
+startButton.addEventListener('click', startGame)
 
 function clearScreen() {
     var board = document.getElementById('main')
@@ -30,11 +32,16 @@ function selectSong() {
 function gameOver(winner, music, parent) {
     music.pause()
     clearScreen()
-    //window.alert(`player ${winner} wins`
+    parent.style.background = 'none'
+    if (winner === 1) {
+        parent.style.background = 'url(../assets/graphics/player1wins.jpg)'
+    } else {
+        parent.style.background = 'url(../assets/graphics/player2wins.jpg)'
+    }
+    sounds.over.play()
     var resetButton = document.createElement('button')
     resetButton.addEventListener('click', startGame)
     resetButton.innerText = 'Play Again'
-    parent.style.background = 'none'
     parent.appendChild(resetButton)
 }
 
@@ -45,8 +52,8 @@ function startGame() {
     ost.play()
     var isPlaying = true
     var parent = document.getElementById('main')
-    parent.style.background = 'url(../assets/graphics/scifi.gif)'
-    parent.style.backgroundSize = 'contain'
+    parent.style.background = 'url(../assets/graphics/Background2.gif)'
+    parent.style.backgroundPositionX = '-200px'
     parent.style.backgroundRepeat = 'no-repeat'
     var lives1 = document.createElement('div')
     var lives2 = document.createElement('div')
@@ -68,20 +75,20 @@ function startGame() {
     parent.appendChild(lava.sprite)
 
     window.addEventListener('keydown', function (e) {
-        switch (e.key) {
-            case 'ArrowRight':
+        switch (e.key.toLowerCase()) {
+            case 'd':
                 player1.direction = 1
                 break
-            case 'ArrowLeft':
+            case 'a':
                 player1.direction = -1
                 break
-            case 'ArrowUp':
+            case 'w':
                 if (!player1.jumping) {
                     sounds.jump1.play()
                     player1.jumping = true
                 }
                 break
-            case 'Enter':
+            case 's':
                 if (!player1.attacking) {
                     player1.attack(player2)
                 }
@@ -98,20 +105,20 @@ function startGame() {
     })
 
     window.addEventListener('keydown', function (e) {
-        switch (e.key.toLowerCase()) {
-            case 'd':
+        switch (e.key) {
+            case 'ArrowRight':
                 player2.direction = 1
                 break
-            case 'a':
+            case 'ArrowLeft':
                 player2.direction = -1
                 break
-            case 'w':
+            case 'ArrowUp':
                 if (!player2.jumping) {
                     sounds.jump2.play()
                     player2.jumping = true
                 }
                 break
-            case 's':
+            case 'ArrowDown':
                 if (!player1.attacking) {
                     player2.attack(player1)
                 }
@@ -120,12 +127,12 @@ function startGame() {
     })
 
     window.addEventListener('keyup', function (e) {
-        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight')
+        if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd')
             player1.direction = 0
     })
 
     window.addEventListener('keyup', function (e) {
-        if (e.key.toLowerCase() === 'a' || e.key.toLowerCase() === 'd')
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight')
             player2.direction = 0
     })
 
@@ -159,6 +166,7 @@ function startGame() {
         lava.grow()
         
         if (player1.collideLava(600 - lava.height)) {
+            sounds.fall.play()
             plat1.reduceStop()
             plat1.reset()
             clearTimeout(platformTimerin10sec)
@@ -167,6 +175,7 @@ function startGame() {
         }
         
         if (player2.collideLava(600 - lava.height)) {
+            sounds.fall.play()
             plat1.reduceStop()
             plat1.reset()
             clearTimeout(platformTimerin10sec)
