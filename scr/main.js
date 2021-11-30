@@ -55,7 +55,7 @@ function startGame() {
     ost.play()
     var isPlaying = true
     var parent = document.getElementById('main')
-    parent.style.background = 'url(assets/graphics/Background2.gif)'
+    parent.style.background = 'url(./assets/graphics/Background2.gif)'
     parent.style.backgroundPositionX = '-200px'
     parent.style.backgroundRepeat = 'no-repeat'
     var lives1 = document.createElement('div')
