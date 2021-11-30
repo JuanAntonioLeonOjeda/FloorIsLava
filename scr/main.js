@@ -43,7 +43,10 @@ function gameOver(winner, music, parent) {
     }
     sounds.over.play()
     var resetButton = document.createElement('button')
-    resetButton.addEventListener('click', startGame)
+    resetButton.addEventListener('click', function(e) {
+        e.stopPropagation()
+        startGame()
+    })
     resetButton.innerText = 'Play Again'
     parent.appendChild(resetButton)
 }
