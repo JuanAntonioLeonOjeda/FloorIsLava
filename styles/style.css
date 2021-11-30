@@ -55,7 +55,7 @@ button {
   #player1 {
     position: absolute;
     background: url(../assets/graphics/player1/BIKERWALKRIGHT1.png) 0px 0px;
-    scale: 1.5;
+    transform: scale(1.5);
     background-size: contain;
     background-repeat: no-repeat;
     filter: drop-shadow(1px 3px 5px #ffb9f9);
