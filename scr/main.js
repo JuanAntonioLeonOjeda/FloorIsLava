@@ -37,9 +37,9 @@ function gameOver(winner, music, parent) {
     clearScreen()
     parent.style.background = 'none'
     if (winner === 1) {
-        parent.style.background = 'url(../assets/graphics/player1wins.jpg)'
+        parent.style.background = 'url(./assets/graphics/player1wins.jpg)'
     } else {
-        parent.style.background = 'url(../assets/graphics/player2wins.jpg)'
+        parent.style.background = 'url(./assets/graphics/player2wins.jpg)'
     }
     sounds.over.play()
     var resetButton = document.createElement('button')

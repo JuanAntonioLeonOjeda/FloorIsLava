@@ -121,17 +121,17 @@ function Player(width, height, posx, posy, playernum) {
   this.loadAfterAttack = function (enemy) {
     if (this.lookAt(enemy) === 1) {
       if (this.playernum === 1) {
-        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKRIGHT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player1/BIKERWALKRIGHT1.png) no-repeat'
       } else {
-        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKRIGHT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player2/PUNKWALKRIGHT1.png) no-repeat'
       }
     } else {
       if (this.playernum === 1) {
-        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKLEFT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player1/BIKERWALKLEFT1.png) no-repeat'
         this.hor += 15
         this.sprite.style.left = this.hor + 'px'
       } else {
-        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKLEFT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player2/PUNKWALKLEFT1.png) no-repeat'
         this.hor += 15
         this.sprite.style.left = this.hor + 'px'
       }
@@ -165,17 +165,17 @@ function Player(width, height, posx, posy, playernum) {
   this.loadAttackSprite = function (enemy) {
     if (this.lookAt(enemy) === 1) {
       if (this.playernum === 1) {
-        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERPUNCHRIGHT.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player1/BIKERPUNCHRIGHT.png) no-repeat'
       } else {
-        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKPUNCHRIGHT.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player2/PUNKPUNCHRIGHT.png) no-repeat'
       }
     } else {
       if (this.playernum === 1) {
-        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERPUNCHLEFT.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player1/BIKERPUNCHLEFT.png) no-repeat'
         this.hor -= 15
         this.sprite.style.left = this.hor + 'px'
       } else {
-        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKPUNCHLEFT.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player2/PUNKPUNCHLEFT.png) no-repeat'
         this.hor -= 15
         this.sprite.style.left = this.hor + 'px'
       }
@@ -185,15 +185,15 @@ function Player(width, height, posx, posy, playernum) {
   this.walkSprite = function () {
     if (this.direction === 1) {
       if (this.playernum === 1) {
-        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKRIGHT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player1/BIKERWALKRIGHT1.png) no-repeat'
       } else {
-        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKRIGHT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player2/PUNKWALKRIGHT1.png) no-repeat'
       }
     } else if (this.direction === -1) {
       if (this.playernum === 1) {
-        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERWALKLEFT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player1/BIKERWALKLEFT1.png) no-repeat'
       } else {
-        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKWALKLEFT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player2/PUNKWALKLEFT1.png) no-repeat'
       }
     }
   }
@@ -201,15 +201,15 @@ function Player(width, height, posx, posy, playernum) {
   this.jumpSprite = function (enemy) {
     if (this.hor <= enemy.hor) {
       if (this.playernum === 1) {
-        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERJUMPRIGHT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player1/BIKERJUMPRIGHT1.png) no-repeat'
       } else {
-        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKJUMPRIGHT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player2/PUNKJUMPRIGHT1.png) no-repeat'
       }
     } else {
       if (this.playernum === 1) {
-        this.sprite.style.background = 'url(../assets/graphics/player1/BIKERJUMPLEFT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player1/BIKERJUMPLEFT1.png) no-repeat'
       } else {
-        this.sprite.style.background = 'url(../assets/graphics/player2/PUNKJUMPLEFT1.png) no-repeat'
+        this.sprite.style.background = 'url(./assets/graphics/player2/PUNKJUMPLEFT1.png) no-repeat'
       }
     }
   }
