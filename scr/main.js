@@ -1,13 +1,13 @@
 const music = {
-    0: new Audio('../assets/music/TakeOnMe.mp3'),
-    1: new Audio('../assets/music/HoldingOutForAHero.mp3'),
-    2: new Audio('../assets/music/WelcomeToTheJungle.mp3'),
+    0: new Audio('https://juanantonioleonojeda.github.io/assets/music/TakeOnMe.mp3'),
+    1: new Audio('https://juanantonioleonojeda.github.io/assets/music/HoldingOutForAHero.mp3'),
+    2: new Audio('https://juanantonioleonojeda.github.io/assets/music/WelcomeToTheJungle.mp3'),
 }
 
 const sounds = {
-    punch1: new Audio('../assets/music/sounds/punch1.mp3'),
-    miss: new Audio('../assets/music/sounds/miss.mp3'),
-    jump1: new Audio('../assets/music/sounds/8bit_jump.mp3'),
+    punch1: new Audio('https://juanantonioleonojeda.github.io/assets/music/sounds/punch1.mp3'),
+    miss: new Audio('https://juanantonioleonojeda.github.io/assets/music/sounds/miss.mp3'),
+    jump1: new Audio('https://juanantonioleonojeda.github.io/assets/music/sounds/8bit_jump.mp3'),
     jump2: new Audio('../assets/music/sounds/jump.mp3'),
     over: new Audio('../assets/music/sounds/gameover.wav'),
     startscreen: new Audio('../assets/music/sounds/inicio.wav'),
