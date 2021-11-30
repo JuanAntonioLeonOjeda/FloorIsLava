@@ -38,6 +38,7 @@ button {
     background-image: url(../assets/graphics/startbackground.jpg);
     background-repeat: no-repeat;
     font-family: '8bit';
+    z-index: 0;
   }
 
   #lava {
@@ -58,6 +59,7 @@ button {
     background-size: contain;
     background-repeat: no-repeat;
     filter: drop-shadow(1px 3px 5px #ffb9f9);
+    z-index: 1;
   }
   
   #player2 {
@@ -67,6 +69,7 @@ button {
     scale: 1.5;
     background-repeat: no-repeat;
     filter: drop-shadow(1px 3px 5px #b6d0ff);
+    z-index: 1;
   }
 
   .life1 {
