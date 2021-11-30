@@ -15,7 +15,10 @@ const sounds = {
 }
 
 var startButton = document.getElementById('game-start')
-startButton.addEventListener('click', startGame)
+startButton.addEventListener('click', function(e) {
+    e.stopPropagation()
+    startGame()
+})
 
 function clearScreen() {
     var board = document.getElementById('main')
@@ -196,3 +199,10 @@ function startGame() {
 
 
 }
+
+
+var canvas = document.getElementById('main')
+canvas.addEventListener('click', function(e) {
+    e.stopPropagation()
+    sounds.startscreen.play()
+})
