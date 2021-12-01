@@ -69,8 +69,8 @@ function Player(width, height, posx, posy, playernum) {
 
 
 
-  this.collideLava = function (lava) {
-    if (this.vert + this.height >= lava) {
+  this.collideThunder = function (thunder) {
+    if (this.vert + this.height >= thunder) {
       return true
     }
     return false

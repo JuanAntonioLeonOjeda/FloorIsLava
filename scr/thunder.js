@@ -1,4 +1,4 @@
-function Lava (width, height, posx, posy) {
+function Thunder (width, height, posx, posy) {
     this.sprite = document.createElement('div')
     this.sprite.setAttribute("id", 'lava')
     this.sprite.style.bottom='0px'

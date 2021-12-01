@@ -70,7 +70,7 @@ function startGame() {
     var plat1 = new Platform(500, 75, 150, 300)
     var player1 = new Player(30, 40, 350, 260, 1)
     var player2 = new Player(30, 40, 450, 260, 2)
-    var lava = new Lava(800, 100, 0, 500)
+    var thunder = new Thunder(800, 150, 0, 500)
     var livesArray1 = document.getElementsByClassName('life1')
     var livesArray2 = document.getElementsByClassName('life2')
     parent.appendChild(lives2)
@@ -78,7 +78,7 @@ function startGame() {
     parent.appendChild(plat1.sprite)
     parent.appendChild(player1.sprite)
     parent.appendChild(player2.sprite)
-    parent.appendChild(lava.sprite)
+    parent.appendChild(thunder.sprite)
 
     window.addEventListener('keydown', function (e) {
         switch (e.key.toLowerCase()) {
@@ -169,9 +169,8 @@ function startGame() {
         player1.lookAt(player2)
         player2.lookAt(player1)
 
-        lava.grow()
         
-        if (player1.collideLava(600 - lava.height)) {
+        if (player1.collideThunder(600 - thunder.height)) {
             sounds.fall.play()
             plat1.reduceStop()
             plat1.reset()
@@ -180,7 +179,7 @@ function startGame() {
             platformReduceIn10sec()
         }
         
-        if (player2.collideLava(600 - lava.height)) {
+        if (player2.collideThunder(600 - thunder.height)) {
             sounds.fall.play()
             plat1.reduceStop()
             plat1.reset()
