@@ -26,8 +26,8 @@ Este es un juego para dos jugadores, ambos usarán el mismo teclado
 OBJETIVO DEL JUEGO
 
 Los luchadores del Planeta Reboot son demasiado duros como para que les dañen los golpes!
-Tu única oportunidad es empujarlos fuera de de la plataforma a base de puñetazos.
-Cada jugador tiene el mimso número de vidas, mostradas en la parte superior de la pantalla, el que se quede sin vida primero pierde!
+Tu única oportunidad es empujar a tu rival fuera de de la plataforma a base de puñetazos.
+Cada jugador tiene el mismo número de vidas, mostradas en la parte superior de la pantalla, el que se quede sin vida primero pierde, pero asegúrate de ganar antes de que el foso les absorba a ambos!
 
 FUTURAS IMPLEMENTACIONES
 
